@@ -7,6 +7,7 @@ schoolgrades_society = 0
 grade = 0
 subj_n = 1
 result = 0
+unit = 0 
 
 while n >= 0: # n이 0이상이면 계속 실행됨.
     subj, grade = input("과목과 등급을 공백을 두고 입력해주세요:\n예시) 정보 2\n(프로그램을 종료하거나 과목 입력이 끝났다면 끝 0을 입력해주세요.)").split()
@@ -18,7 +19,7 @@ while n >= 0: # n이 0이상이면 계속 실행됨.
     else:
         n -= 1 # 과목, 등급이 입력될 때마다 n이 1씩 줄어듦.
 
-    unit = 0 # 단위수를 0으로 설정.
+    
     
     '''
     단위 수
