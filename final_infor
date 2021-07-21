@@ -1,0 +1,66 @@
+subj_list = [] # 오류를 방지하기 위해 아무것도 없는 리스트를 생성.
+unit = 0
+unit_n = 0
+school_grade = 0
+
+
+while True: # 무한 반복문
+    subj = input("[내신 성적 등급 계산기]\n* 내신은 단위 수를 반영하여 산출됩니다.\n* 결과값은 소수점 둘째자리까지 반올림되어 산출됩니다.\n* 과목을 모두 입력하셨다면 중지를 입력해주세요.\n이수 중인 과목을 입력해주세요: ")
+    # 설명문 및 과목 입력
+    
+    if subj == "중지" and len(subj_list) != 0: # 중지가 입력되었고 동시에 과목개수가 0이 아닐경우
+        subj_list.append("끝") # 과목 리스트의 마지막에 끝을 추가.
+        print("[과목 입력이 중지되었습니다.]") 
+        
+        for i in subj_list: # 과목 리스트에서 i로 변수를 옮기며 밑 코드를 반복.
+            if i == "끝": # 과목에 성적을 모두 입력하고 변수 i에 '끝'이 들어간 경우.
+                result = school_grade/unit_n # 각 과목의 등급 * 단위의 합을 총 단위로 나눔.
+                result = round(result, 2) # 소수점 둘째자리까지 반올림.
+                print("***** 최종 내신은 %s입니다. *****"%(result)) # 출력
+                break # for 반복문 중지.
+            
+            grade = int(input("%s의 등급을 입력해주세요: " %(i)))
+            unit = int(input("%s의 단위를 입력해주세요: " %(i)))
+            school_grade += grade * unit # 등급 * 단위를 누적함.
+            unit_n += unit # 단위를 누적함.
+        break # 위 for 반복문이 끝나면 while True를 멈춤.
+    elif subj == "중지" and len(subj_list) == 0: # 중지가 입력되었고 과목의 개수가 0개일 경우 프로그램 중지.
+        break
+            
+    else: # 그외 (중지가 입력되지 않은 경우)
+        subj_list.append(subj) # 과목 리스트에 과목을 추가.
+        print("┌--------------------------------┐\n│입력하신 과목은 " + subj + "입니다.│\n└--------------------------------┘")
+        continue # while True 반복문의 처음으로 돌아감.
+
+
+if len(subj_list) != 0: # 과목의 개수가 0이 아닐 경우 실행.
+    while True:
+        recom = input("적정 대학 추천을 받으시겠습니까? (예/아니요): ")
+        if recom == "아니요": # recom이 아니요일 경우
+            print("프로그램이 종료되었습니다.")
+            break # 반복문 중지.
+        elif recom == "예":
+            if result <= 1.3:
+                print("서울대, 연세대, 고려대 지원을 추천합니다.")
+            elif result <= 1.7:
+                print("서강대, 성균관대, 한양대 지원을 추천합니다.")
+            elif result <= 2.1:
+                print("중앙대, 경희대, 한국외대, 서울시립대, 건국 지원을 추천합니다.")
+            elif result <= 2.7:
+                print("동국대, 국민대, 숭실대, 세종대, 단국대 지원을 추천합니다.")
+            elif result <= 3.0:
+                print("인하대, 가천대 지원을 추천합니다.")
+            elif result <= 3.5:
+                print("경기대 지원을 추천합니다.")
+            elif result <= 4.0:
+                print("순천향대, 충북대 지원을 추천합니다.")
+            elif result <= 4.5:
+                print("수원대 지원을 추천합니다.")
+            else:
+                print("몰라용")
+            break # 반복문 중지.
+        else:
+            print("잘못된 입력입니다. 다시 입력해주세요.")
+            continue # 반복문 다시 실행.
+else: # 그외 (입력된 과목이 0일 경우.)
+    print("입력된 과목이 없어, 프로그램이 중지되었습니다.")
