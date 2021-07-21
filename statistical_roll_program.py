@@ -69,4 +69,4 @@ while True:
 		print("***** 잘못된 입력입니다. yes 또는 no를 입력해주세요. *****")
 		continue
 		
-# end.
+# end
